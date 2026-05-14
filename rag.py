@@ -37,7 +37,7 @@ def ingest_document(file_path: str):
         document_id=document_id
     )
 
-    return len(chunks)
+    return len(chunks), document_id
 
 
 # -----------------------------

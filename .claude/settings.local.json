@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv\\\\Scripts\\\\python.exe -c \"import gradio; print\\(gradio.__version__\\)\")",
+      "Read(//mnt/c/DEV/**)",
+      "Bash(.venv/Scripts/python.exe -c \"import gradio; print\\(gradio.__version__\\)\")",
+      "Bash(timeout 5 .venv/Scripts/python.exe app.py)",
+      "Bash(.venv/Scripts/python.exe -c ' *)"
+    ]
+  }
+}

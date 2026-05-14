@@ -31,8 +31,11 @@ def ask_llm(user_id, question, sources, history):
         for m in memory_hits
     ])
 
-    # 3. documentos
-    docs_context = "\n\n".join([s["text"] for s in sources])
+    # 3. documentos com referências numeradas
+    docs_context = "\n\n".join([
+        f"[DOC {i+1} | {s['source']} | chunk {s['chunk_id']}]\n{s['text']}"
+        for i, s in enumerate(sources)
+    ])
 
     messages = [
         {
@@ -44,6 +47,12 @@ Usa SEMPRE:
 - documentos
 - memória do utilizador
 - memória relevante (RAG)
+
+REGRA DE CITAÇÃO OBRIGATÓRIA:
+Sempre que usares informação de um documento, cita inline no formato:
+(segundo [nome do ficheiro], chunk [N])
+Exemplo: "O contrato foi assinado em 2023 (segundo relatorio.pdf, chunk 4)."
+Nunca respondas sem citar as fontes usadas.
 
 MEMÓRIA ESTRUTURADA:
 {memory_context}

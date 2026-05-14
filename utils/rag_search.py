@@ -7,7 +7,7 @@ from utils.embeddings import get_embeddings
 # -----------------------------
 def search_document(query, document_id=None, n_results=8):
 
-    query_embedding = get_embeddings(query)[0]
+    query_embedding = get_embeddings(query, is_query=True)[0]
 
     results = query_chunks(
         query_embedding=query_embedding,

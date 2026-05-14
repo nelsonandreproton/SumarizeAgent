@@ -8,6 +8,13 @@
       "question": "o que diz este documento sobre seguran\u00e7a, em 5 pontos?",
       "answer": "Este documento aborda v\u00e1rias aspectos importantes da seguran\u00e7a em desenvolvimento de software. Aqui est\u00e3o cinco pontos principais:\n\n1. **Manuten\u00e7\u00e3o Ativa do Invent\u00e1rio**: O documento enfatiza a import\u00e2ncia de manter um invent\u00e1rio atualizado dos plugins e bibliotecas usados, recomendando que sejam apenas os componentes de fonte oficial.\n\n2. **Seguran\u00e7a Cont\u00ednua (CI/CD)**: A integridade do c\u00f3digo ou dados \u00e9 crucial para evitar falhas relacionadas \u00e0 seguran\u00e7a. O documento sugere a implementa\u00e7\u00e3o de verifica\u00e7\u00f5es de integridade e o uso de pipelines de CI/CD seguros.\n\n3. **Autentica\u00e7\u00e3o e Sess\u00f5es**: \u00c9 importante garantir que as autentica\u00e7\u00f5es e sess\u00f5es sejam adequadas, com recomenda\u00e7\u00f5es para implementar MFA (Multi-Factor Authentication) e definir pol\u00edticas robustas de password.\n\n4. **Seguran\u00e7a em todas as Etapas do Ciclo de Vida de Desenvolvimento**: O documento destaca a import\u00e2ncia de testes de seguran\u00e7a em cada camada do ciclo de vida, incluindo frontend, backend e base de dados.\n\n5. **Princ\u00edpios de Seguran\u00e7a Integrados na Pr\u00e1tica**: Sugere incorporar requisitos de seguran\u00e7a diretamente nas User Stories e crit\u00e9rios de aceita\u00e7\u00e3o, bem como a utiliza\u00e7\u00e3o de ferramentas de seguran\u00e7a como o AI Mentor Studio para garantir que as pr\u00e1ticas de codifica\u00e7\u00e3o seguras sejam parte integrante do processo.",
       "sources": []
+    },
+    {
+      "id": "779b325a-0db9-4cf3-bd53-055e5a3a22de",
+      "timestamp": "2026-05-14T14:10:03.212602",
+      "question": "h\u00e1 algum documento que tenha alguma a mais que os outros?",
+      "answer": "N\u00e3o h\u00e1 um documento espec\u00edfico que contenha informa\u00e7\u00f5es adicionais ou diferentes dos outros documentos mencionados. Todos os documentos (DOC 1, DOC 2, DOC 3, DOC 4 e DOC 5) parecem ser vers\u00f5es atualizadas ou complementares do mesmo manual de procedimentos OutSystems da Near Partner, com algumas pequenas diferen\u00e7as pontuais entre eles.\n\nOs principais pontos em que se diferem s\u00e3o:\n\n- **Vers\u00e3o**: DOC 1 \u00e9 a vers\u00e3o mais recente (3.0), enquanto os outros documentos t\u00eam vers\u00f5es anteriores (2.0 e 3.0).\n- **Inclus\u00e3o de novos t\u00f3picos ou exemplos**: Algumas vers\u00f5es mencionam conceitos espec\u00edficos como \"CSS Custom Properties\", \"Definition of Ready\" e \"Style Guide Architecture\", que podem ser considerados adicionais em compara\u00e7\u00e3o com as outras vers\u00f5es.\n- **Detalhes sobre a metodologia de entrega**: DOC 1 (vers\u00e3o mais recente) inclui um breve resumo das fases do projeto OutSystems.\n\nNo entanto, essas diferen\u00e7as s\u00e3o muito sutis e n\u00e3o representam informa\u00e7\u00f5es adicionais significativas. Todas as vers\u00f5es compartilham o mesmo esquema de conte\u00fado e abordagem para os pap\u00e9is e responsabilidades da equipe, bem como os princ\u00edpios fundamentais do desenvolvimento OutSystems.\n\nPortanto, em termos de conte\u00fado informativo ou estrutural, n\u00e3o h\u00e1 documentos que tenham informa\u00e7\u00f5es adicionais ou diferentes dos outros.",
+      "sources": []
     }
   ],
   "semantic": [
@@ -33,6 +40,36 @@
       "id": "4edce801-fbed-4ba4-8366-7b2eaf151ab6",
       "timestamp": "2026-05-14T13:29:07.414981",
       "fact": "**Princ\u00edpios de Seguran\u00e7a Integrados na Pr\u00e1tica**: Sugere incorporar requisitos de seguran\u00e7a diretamente nas User Stories e crit\u00e9rios de aceita\u00e7\u00e3o, bem como a utiliza\u00e7\u00e3o de ferramentas de seguran\u00e7a como o AI Mentor Studio para garantir que as pr\u00e1ticas de codifica\u00e7\u00e3o seguras sejam parte integrante do processo.",
+      "confidence": 0.75
+    },
+    {
+      "id": "49dd2a0d-fd33-417e-af7b-8c500caac2b6",
+      "timestamp": "2026-05-14T14:10:03.217668",
+      "fact": "Todos os documentos (DOC 1, DOC 2, DOC 3, DOC 4 e DOC 5) parecem ser vers\u00f5es atualizadas ou complementares do mesmo manual de procedimentos OutSystems da Near Partner, com algumas pequenas diferen\u00e7as pontuais entre eles.",
+      "confidence": 0.75
+    },
+    {
+      "id": "2b2edeb1-3fd6-427f-aa02-fb1204556f7c",
+      "timestamp": "2026-05-14T14:10:03.220667",
+      "fact": "Os principais pontos em que se diferem s\u00e3o:\n\n- **Vers\u00e3o**: DOC 1 \u00e9 a vers\u00e3o mais recente (3.0), enquanto os outros documentos t\u00eam vers\u00f5es anteriores (2.0 e 3.0).",
+      "confidence": 0.75
+    },
+    {
+      "id": "88f6957a-f064-43de-9f19-5d6611b1e058",
+      "timestamp": "2026-05-14T14:10:03.223687",
+      "fact": "- **Inclus\u00e3o de novos t\u00f3picos ou exemplos**: Algumas vers\u00f5es mencionam conceitos espec\u00edficos como \"CSS Custom Properties\", \"Definition of Ready\" e \"Style Guide Architecture\", que podem ser considerados adicionais em compara\u00e7\u00e3o com as outras vers\u00f5es.",
+      "confidence": 0.75
+    },
+    {
+      "id": "031ec2d2-1152-47fa-a551-f465c3abecc2",
+      "timestamp": "2026-05-14T14:10:03.226326",
+      "fact": "- **Detalhes sobre a metodologia de entrega**: DOC 1 (vers\u00e3o mais recente) inclui um breve resumo das fases do projeto OutSystems.",
+      "confidence": 0.75
+    },
+    {
+      "id": "498f4d5f-ddde-4be4-8a8c-3377526db286",
+      "timestamp": "2026-05-14T14:10:03.231840",
+      "fact": "No entanto, essas diferen\u00e7as s\u00e3o muito sutis e n\u00e3o representam informa\u00e7\u00f5es adicionais significativas.",
       "confidence": 0.75
     }
   ],

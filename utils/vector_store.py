@@ -59,6 +59,30 @@ def add_chunks(chunks, embeddings, filename, document_id):
 
 
 # -----------------------------
+# GET ALL CHUNKS FOR A DOCUMENT
+# -----------------------------
+def get_all_chunks(document_id: str):
+
+    results = collection.get(
+        where={"document_id": document_id},
+        include=["documents", "metadatas"]
+    )
+
+    chunks = []
+
+    for doc, meta in zip(results["documents"], results["metadatas"]):
+        chunks.append({
+            "text": doc,
+            "chunk_id": meta.get("chunk_id"),
+            "filename": meta.get("filename")
+        })
+
+    chunks.sort(key=lambda x: x["chunk_id"])
+
+    return chunks
+
+
+# -----------------------------
 # QUERY
 # -----------------------------
 def query_chunks(query_embedding, n_results=8, document_id=None):
