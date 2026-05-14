@@ -71,11 +71,11 @@ utils/
 6) 🧠 Memory Layer (histórico inteligente)
 
 Em vez de apenas chat history:
-
 Guardar perguntas frequentes
 Guardar insights extraídos automaticamente
 Criar resumos persistentes por documento
 Evolução de memória por utilizador
+
 7) 🤖 Agent Mode (nível avançado)
 
 Integração com agentes usando smolagents:

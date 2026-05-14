@@ -1,0 +1,40 @@
+{
+  "user_id": "default_user",
+  "created_at": "2026-05-14T13:22:39.570807",
+  "episodic": [
+    {
+      "id": "0fb98af3-9dc2-4d24-bd09-c85ff31205d3",
+      "timestamp": "2026-05-14T13:29:07.401464",
+      "question": "o que diz este documento sobre seguran\u00e7a, em 5 pontos?",
+      "answer": "Este documento aborda v\u00e1rias aspectos importantes da seguran\u00e7a em desenvolvimento de software. Aqui est\u00e3o cinco pontos principais:\n\n1. **Manuten\u00e7\u00e3o Ativa do Invent\u00e1rio**: O documento enfatiza a import\u00e2ncia de manter um invent\u00e1rio atualizado dos plugins e bibliotecas usados, recomendando que sejam apenas os componentes de fonte oficial.\n\n2. **Seguran\u00e7a Cont\u00ednua (CI/CD)**: A integridade do c\u00f3digo ou dados \u00e9 crucial para evitar falhas relacionadas \u00e0 seguran\u00e7a. O documento sugere a implementa\u00e7\u00e3o de verifica\u00e7\u00f5es de integridade e o uso de pipelines de CI/CD seguros.\n\n3. **Autentica\u00e7\u00e3o e Sess\u00f5es**: \u00c9 importante garantir que as autentica\u00e7\u00f5es e sess\u00f5es sejam adequadas, com recomenda\u00e7\u00f5es para implementar MFA (Multi-Factor Authentication) e definir pol\u00edticas robustas de password.\n\n4. **Seguran\u00e7a em todas as Etapas do Ciclo de Vida de Desenvolvimento**: O documento destaca a import\u00e2ncia de testes de seguran\u00e7a em cada camada do ciclo de vida, incluindo frontend, backend e base de dados.\n\n5. **Princ\u00edpios de Seguran\u00e7a Integrados na Pr\u00e1tica**: Sugere incorporar requisitos de seguran\u00e7a diretamente nas User Stories e crit\u00e9rios de aceita\u00e7\u00e3o, bem como a utiliza\u00e7\u00e3o de ferramentas de seguran\u00e7a como o AI Mentor Studio para garantir que as pr\u00e1ticas de codifica\u00e7\u00e3o seguras sejam parte integrante do processo.",
+      "sources": []
+    }
+  ],
+  "semantic": [
+    {
+      "id": "0092f75c-d382-441c-b94c-50ca9417a032",
+      "timestamp": "2026-05-14T13:29:07.406458",
+      "fact": "**Seguran\u00e7a Cont\u00ednua (CI/CD)**: A integridade do c\u00f3digo ou dados \u00e9 crucial para evitar falhas relacionadas \u00e0 seguran\u00e7a.",
+      "confidence": 0.75
+    },
+    {
+      "id": "e0ca5db4-88e5-4bc2-87a6-ad815e496529",
+      "timestamp": "2026-05-14T13:29:07.409463",
+      "fact": "**Autentica\u00e7\u00e3o e Sess\u00f5es**: \u00c9 importante garantir que as autentica\u00e7\u00f5es e sess\u00f5es sejam adequadas, com recomenda\u00e7\u00f5es para implementar MFA (Multi-Factor Authentication) e definir pol\u00edticas robustas de password.",
+      "confidence": 0.75
+    },
+    {
+      "id": "678c8436-5494-435b-b62b-f8e6528d9168",
+      "timestamp": "2026-05-14T13:29:07.412463",
+      "fact": "**Seguran\u00e7a em todas as Etapas do Ciclo de Vida de Desenvolvimento**: O documento destaca a import\u00e2ncia de testes de seguran\u00e7a em cada camada do ciclo de vida, incluindo frontend, backend e base de dados.",
+      "confidence": 0.75
+    },
+    {
+      "id": "4edce801-fbed-4ba4-8366-7b2eaf151ab6",
+      "timestamp": "2026-05-14T13:29:07.414981",
+      "fact": "**Princ\u00edpios de Seguran\u00e7a Integrados na Pr\u00e1tica**: Sugere incorporar requisitos de seguran\u00e7a diretamente nas User Stories e crit\u00e9rios de aceita\u00e7\u00e3o, bem como a utiliza\u00e7\u00e3o de ferramentas de seguran\u00e7a como o AI Mentor Studio para garantir que as pr\u00e1ticas de codifica\u00e7\u00e3o seguras sejam parte integrante do processo.",
+      "confidence": 0.75
+    }
+  ],
+  "procedural": []
+}

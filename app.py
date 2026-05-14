@@ -5,8 +5,12 @@ from utils.rag_search import search_document
 from utils.llm import ask_llm
 from utils.vector_store import reset_collection
 
+from utils.memory_manager import process_memory
+from utils.memory_compressor import compress_memory
+
 
 document_loaded = False
+USER_ID = "default_user"
 
 
 def upload_document(file):
@@ -29,9 +33,21 @@ def chat(message, history):
 
     sources = search_document(message)
 
-    answer = ask_llm(message, sources, history)
+    answer = ask_llm(
+        USER_ID,
+        message,
+        sources,
+        history
+    )
 
-    # formatar resposta com fontes
+    process_memory(
+        USER_ID,
+        message,
+        answer
+    )
+
+    compress_memory(USER_ID)
+
     formatted_sources = "\n".join([
         f"- {s['source']} (chunk {s['chunk_id']}) | score: {s['score']}"
         for s in sources
@@ -45,9 +61,10 @@ def chat(message, history):
 {formatted_sources}
 """
 
+
 with gr.Blocks() as app:
 
-    gr.Markdown("# Local RAG Agent")
+    gr.Markdown("# 📚 Local RAG Agent + Memory")
 
     upload = gr.File()
 
@@ -61,8 +78,7 @@ with gr.Blocks() as app:
         outputs=upload_status
     )
 
-    chatbot = gr.ChatInterface(
-    fn=chat
-)
+    chatbot = gr.ChatInterface(fn=chat)
+
 
 app.launch()
