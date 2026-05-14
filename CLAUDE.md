@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+obsidian_vault: C:/DEV/Obsidian/Nelson
+project: SumarizeAgent
+Run: `load context` to initialise session memory.
+
 ## Commands
 
 ```bash
