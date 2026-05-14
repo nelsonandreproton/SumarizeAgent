@@ -38,6 +38,16 @@ LM Studio must be running locally on `http://localhost:1234` with the `qwen2.5-3
 - `memory_rag.py` — bag-of-words overlap scoring to surface relevant past interactions (no embeddings — simple but intentional MVP)
 - `memory_compressor.py` — when episodic count ≥ 10, condenses oldest 20 entries into a semantic summary and trims episodic to last 10
 
+**Agent mode** (`utils/agent_tools.py`, `utils/agent_runner.py`):
+
+- `smolagents.ToolCallingAgent` with `OpenAIServerModel` pointing at LM Studio — same model as chat tab
+- 5 tools: `SearchDocumentTool`, `ExtractEntitiesTool`, `TaskListTool`, `GenerateEmailTool`, `SummarizeTool`
+- All tools use `search_document()` internally — they operate on whatever docs are in ChromaDB at query time
+- `run_agent(query)` returns `(final_answer, steps)` — steps are `ActionStep` logs (tool calls + observations)
+- Agent tab shares `doc_count` state with chat tab via `additional_inputs` — must index docs in chat tab first
+- `ExtractEntitiesTool` and `TaskListTool` use heuristic regex (no extra LLM call) for speed; `GenerateEmailTool` retrieves context and lets the agent LLM compose the final email
+- `max_steps=6` — prevents runaway loops on small local models
+
 **Document comparison** (`utils/comparator.py`):
 
 - Upload two docs via "Comparar Documentos" tab — each gets its own `document_id`, both coexist in ChromaDB

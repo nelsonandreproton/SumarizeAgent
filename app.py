@@ -6,6 +6,7 @@ from utils.rag_search import search_document
 from utils.llm import ask_llm
 from utils.vector_store import reset_collection
 from utils.comparator import compare_documents
+from utils.agent_runner import run_agent
 
 from utils.memory_manager import process_memory
 from utils.memory_compressor import compress_memory
@@ -102,6 +103,40 @@ def load_doc_b(file, state):
     return f"✅ {filename} — {n_chunks} chunks carregados", state
 
 
+# -------------------------------------------------------
+# AGENT TAB
+# -------------------------------------------------------
+
+AGENT_QUICK_ACTIONS = [
+    "Extrai todas as entidades importantes (pessoas, datas, valores, organizações)",
+    "Gera uma lista de tarefas e obrigações do documento",
+    "Resume os pontos principais do documento",
+    "Gera um email profissional com base no conteúdo do documento",
+    "Vai buscar informação sobre prazos e deadlines",
+]
+
+
+def run_agent_query(message, history, doc_count):
+    if doc_count == 0:
+        return "⚠️ Primeiro indexa pelo menos um documento no tab 'Chat com Documentos'."
+
+    answer, steps = run_agent(message)
+
+    steps_md = ""
+    if steps:
+        steps_md = "\n\n---\n\n**Raciocínio do agente:**\n" + "\n\n".join(steps)
+
+    return f"{answer}{steps_md}"
+
+
+def quick_action(action, history, doc_count):
+    return run_agent_query(action, history, doc_count)
+
+
+# -------------------------------------------------------
+# COMPARE TAB
+# -------------------------------------------------------
+
 def run_comparison(state):
     if not state.get("doc_id_a") or not state.get("doc_id_b"):
         return "⚠️ Carrega os dois documentos antes de comparar."
@@ -122,9 +157,10 @@ with gr.Blocks(title="RAG Agent") as app:
 
     gr.Markdown("# 📚 Local RAG Agent + Memory")
 
-    with gr.Tab("Chat com Documentos"):
+    # shared across all tabs — must live at Blocks level
+    doc_count = gr.State(0)
 
-        doc_count = gr.State(0)
+    with gr.Tab("Chat com Documentos"):
 
         with gr.Row():
             upload = gr.File(
@@ -153,6 +189,21 @@ with gr.Blocks(title="RAG Agent") as app:
         chatbot = gr.ChatInterface(
             fn=chat,
             additional_inputs=[doc_count]
+        )
+
+    with gr.Tab("Agente"):
+
+        gr.Markdown(
+            "### Agente inteligente\n"
+            "Escreve uma instrução livre ou clica num exemplo. "
+            "O agente escolhe automaticamente que ferramentas usar."
+        )
+
+        agent_chat = gr.ChatInterface(
+            fn=run_agent_query,
+            additional_inputs=[doc_count],
+            examples=[[action, 0] for action in AGENT_QUICK_ACTIONS],
+            example_labels=AGENT_QUICK_ACTIONS,
         )
 
     with gr.Tab("Comparar Documentos"):

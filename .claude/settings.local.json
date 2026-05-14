@@ -5,7 +5,9 @@
       "Read(//mnt/c/DEV/**)",
       "Bash(.venv/Scripts/python.exe -c \"import gradio; print\\(gradio.__version__\\)\")",
       "Bash(timeout 5 .venv/Scripts/python.exe app.py)",
-      "Bash(.venv/Scripts/python.exe -c ' *)"
+      "Bash(.venv/Scripts/python.exe -c ' *)",
+      "Bash(.venv/Scripts/python.exe -c \"import smolagents; print\\(smolagents.__version__\\)\")",
+      "Bash(.venv/Scripts/pip.exe install *)"
     ]
   }
 }
