@@ -5,8 +5,21 @@ model = SentenceTransformer(
 )
 
 
-def create_embeddings(chunks):
+# -----------------------------
+# MAIN FUNCTION (ALINHADA COM RAG)
+# -----------------------------
+def get_embeddings(texts):
 
-    embeddings = model.encode(chunks)
+    if isinstance(texts, str):
+        texts = [texts]
 
-    return embeddings
+    # E5 funciona melhor com prefixos (importante!)
+    texts = [f"passage: {t}" for t in texts]
+
+    embeddings = model.encode(
+        texts,
+        normalize_embeddings=True,
+        show_progress_bar=False
+    )
+
+    return embeddings.tolist()

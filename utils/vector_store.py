@@ -1,8 +1,15 @@
 import chromadb
 import uuid
 
+from chromadb.config import Settings
+
+
+# -----------------------------
+# CLIENT + COLLECTION
+# -----------------------------
 client = chromadb.PersistentClient(
-    path="./chroma_db"
+    path="chroma_db",
+    settings=Settings(anonymized_telemetry=False)
 )
 
 collection = client.get_or_create_collection(
@@ -10,50 +17,62 @@ collection = client.get_or_create_collection(
 )
 
 
-def add_chunks(chunks, embeddings, filename):
-
-    ids = [str(uuid.uuid4()) for _ in chunks]
-
-    metadatas = [
-        {
-            "source": filename,
-            "chunk_id": i
-        }
-        for i in range(len(chunks))
-    ]
-
-    collection.add(
-        ids=ids,
-        documents=chunks,
-        embeddings=embeddings.tolist(),
-        metadatas=metadatas
-    )
-
-
-def search(query_embedding, top_k=5):
-
-    results = collection.query(
-        query_embeddings=[query_embedding.tolist()],
-        n_results=top_k,
-        include=["documents", "metadatas", "distances"]
-    )
-
-    return {
-        "documents": results["documents"][0],
-        "metadatas": results["metadatas"][0],
-        "distances": results["distances"][0]
-    }
-
-
+# -----------------------------
+# RESET (opcional)
+# -----------------------------
 def reset_collection():
-
     global collection
 
-    try:
-        client.delete_collection("documents")
-    except:
-        pass
+    client.delete_collection("documents")
 
     collection = client.get_or_create_collection(
         name="documents"
     )
+
+
+# -----------------------------
+# ADD CHUNKS (MULTI-DOC SUPPORTED)
+# -----------------------------
+def add_chunks(chunks, embeddings, filename, document_id):
+
+    ids = []
+    metadatas = []
+
+    for i, chunk in enumerate(chunks):
+
+        chunk_id = f"{document_id}_{i}"
+
+        ids.append(chunk_id)
+
+        metadatas.append({
+            "document_id": document_id,
+            "filename": filename,
+            "chunk_id": i
+        })
+
+    collection.add(
+        ids=ids,
+        documents=chunks,
+        embeddings=embeddings,
+        metadatas=metadatas
+    )
+
+
+# -----------------------------
+# QUERY
+# -----------------------------
+def query_chunks(query_embedding, n_results=8, document_id=None):
+
+    where_filter = None
+
+    if document_id:
+        where_filter = {"document_id": document_id}
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=n_results,
+        where=where_filter,
+        include=["documents", "metadatas", "distances"]
+    )
+
+    return results

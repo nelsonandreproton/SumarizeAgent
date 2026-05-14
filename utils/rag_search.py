@@ -1,33 +1,54 @@
-from utils.embeddings import model
-from utils.vector_store import search
-from utils.reranker import rerank
+from utils.vector_store import query_chunks
+from utils.embeddings import get_embeddings
 
 
-def search_document(question):
+# -----------------------------
+# MAIN SEARCH FUNCTION
+# -----------------------------
+def search_document(query, document_id=None, n_results=8):
 
-    embedding = model.encode(question)
+    query_embedding = get_embeddings(query)[0]
 
-    results = search(embedding, top_k=10)
+    results = query_chunks(
+        query_embedding=query_embedding,
+        n_results=n_results,
+        document_id=document_id
+    )
 
-    docs = results["documents"]
-    metas = results["metadatas"]
-    scores = results["distances"]
+    documents = results.get("documents", [[]])[0]
+    metadatas = results.get("metadatas", [[]])[0]
+    distances = results.get("distances", [[]])[0]
 
-    # rerank só pelos textos
-    ranked_docs = rerank(question, docs, top_k=3)
+    formatted = []
 
-    # reconstruir fontes associadas aos docs selecionados
-    final_sources = []
+    for doc, meta, dist in zip(documents, metadatas, distances):
 
-    for doc in ranked_docs:
-
-        idx = docs.index(doc)
-
-        final_sources.append({
+        formatted.append({
             "text": doc,
-            "source": metas[idx]["source"],
-            "chunk_id": metas[idx]["chunk_id"],
-            "score": round(1 - scores[idx], 3)  # converte distância → relevância
+            "source": meta.get("filename", "unknown"),
+            "document_id": meta.get("document_id"),
+            "chunk_id": meta.get("chunk_id"),
+            "score": float(1 - dist)  # cosine similarity approx
         })
 
-    return final_sources
+    # ordenar por relevância
+    formatted.sort(key=lambda x: x["score"], reverse=True)
+
+    return formatted
+
+
+# -----------------------------
+# DEBUG VIEW (OPTIONAL)
+# -----------------------------
+def search_debug(query):
+
+    results = search_document(query)
+
+    print("\n🔎 SEARCH RESULTS\n")
+
+    for r in results:
+        print(f"[{r['score']:.3f}] {r['source']} - chunk {r['chunk_id']}")
+        print(r["text"][:200])
+        print("-" * 50)
+
+    return results
